@@ -18,8 +18,15 @@ const validate = (req, res, next) => {
   const extractedErrors = [];
   errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
 
-  return res.status(422).json({
-    errors: extractedErrors
+  res.render('template', {
+    locals: {
+      title: 'User Sign Up',
+      extractedErrors: extractedErrors,
+      is_logged_in: req.session.is_logged_in
+    },
+    partials: {
+      partial: 'partial-signup'
+    }
   });
 };
 
