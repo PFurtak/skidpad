@@ -3,6 +3,38 @@ const router = express.Router();
 const UserModel = require('../model/userModel');
 const bcrypt = require('bcryptjs');
 
+// SIGN UP VALIDATOR##################################################
+
+const { body, validationResult } = require('express-validator');
+const userValidationRules = () => {
+  return [
+    // username must be 5 chars long
+    body('username').isLength({ min: 5 }),
+    //email must be an email
+    body('email').isEmail(),
+    // password must be at least 5 chars long
+    body('password').isLength({ min: 5 })
+  ];
+};
+
+const validate = (req, res, next) => {
+  const errors = validationResult(req);
+  if (errors.isEmpty()) {
+    return next();
+  }
+  const extractedErrors = [];
+  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
+
+  res.redirect('/users/signupfail');
+};
+
+module.exports = {
+  userValidationRules,
+  validate
+};
+
+//#########################################################
+
 router.get('/signup', function(req, res, next) {
   res.render('template', {
     locals: {
@@ -11,6 +43,21 @@ router.get('/signup', function(req, res, next) {
     },
     partials: {
       partial: 'partial-signup'
+    }
+  });
+});
+router.get('/signupfail', async function(req, res, next) {
+  const errors = await validationResult(req);
+
+  console.log(errors);
+  res.render('template', {
+    locals: {
+      title: 'User Sign Up',
+      errors: errors,
+      is_logged_in: req.session.is_logged_in
+    },
+    partials: {
+      partial: 'partial-signupfail'
     }
   });
 });
@@ -46,7 +93,7 @@ router.post('/login', async function(req, res, next) {
   }
 });
 
-const { userValidationRules, validate } = require('../validator');
+// const { userValidationRules, validate } = require('../validator');
 router.post('/signup', userValidationRules(), validate, async function(
   req,
   res,
