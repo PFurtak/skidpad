@@ -1,4 +1,26 @@
-.fa-home {
+.hero-body {
+  background-color: rgb(115, 149, 174);
+}
+
+html {
+  background-color:rgb(85, 122, 149);
+}
+
+.navbar.is-dark {
+  background-color: rgb(93, 92, 97);
+  box-shadow: 2px 2px 10px black;
+}
+
+.button.is-dark {
+  background-color: rgb(93, 92, 97);
+}
+
+.indexList {
   color: white;
-  size: 32px;
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+  width: 15%;
+  background-color: rgb(93, 92, 97); 
+  border-radius:10px;
 }

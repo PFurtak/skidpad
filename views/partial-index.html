@@ -46,4 +46,4 @@
 <input id="inputMake" value="all" type="hidden">
 <input id="inputModel" value="all" type="hidden">
 
-${carrs.map(entry => `<a href="carrs/${year}/${entry.Make_Name}/${entry.Model_Name}"><p>${entry.Make_Name} ${entry.Model_Name}</p></a>`).join('')}
+${carrs.map(entry => `<a href="carrs/${year}/${entry.Make_Name}/${entry.Model_Name}"><p class="indexList">${entry.Make_Name} ${entry.Model_Name}</p></a>`).join('')}
