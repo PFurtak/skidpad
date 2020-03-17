@@ -1,6 +1,6 @@
-<h1>Sign Up</h1>
+<h1 class="pageTitle">Sign Up</h1>
 <form action="/users/signup" method="POST">
-  <ul>
+  <ul class="pageForm">
     <label>
       <input name="username" placeholder="Username" />
       <br />
@@ -8,11 +8,11 @@
       <p>
         <input type="password" name="password" placeholder="Password" />
       </p>
+      <button type="submit">Sign Up</button>
     </label>
-    <button type="submit">Sign Up</button>
   </ul>
 </form>
-<ul>
+<ul class="errorMsg">
   ${errors.map(entry => `
   <li>${entry.param}: ${entry.msg}</li>
   `).join('')}
