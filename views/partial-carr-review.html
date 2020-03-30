@@ -7,7 +7,10 @@
 <h1>Review</h1>
 <ul>
   ${rev.map(entry => `
+  <li><img src="/images/${entry.image}"></li>
   <li><strong>Review:</strong> ${entry.review_text}</li>
+  <br>
+  <li><Strong>Final Verdict: ${entry.stars}/5</Strong></li>
   <hr />
   ` ).join('')}
 </ul>
